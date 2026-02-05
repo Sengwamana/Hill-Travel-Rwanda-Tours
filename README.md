@@ -1,20 +1,46 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+# Hill Travel Rwanda Tours
 
-# Run and deploy your AI Studio app
+An immersive travel and tourism web application dedicated to showcasing the beauty of Rwanda. Built with modern web technologies to provide a fast and responsive user experience.
 
-This contains everything you need to run your app locally.
+## 🚀 Tech Stack
 
-View your app in AI Studio: https://ai.studio/apps/drive/11qsXBXTCbeaCH4t9XrOhMqWc8lnwHwku
+- **Framework:** [React](https://react.dev/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 
-## Run Locally
+## 🛠️ Getting Started
 
-**Prerequisites:**  Node.js
+Follow these steps to set up the project locally.
 
+### Prerequisites
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Ensure you have Node.js installed on your machine.
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Sengwamana/Hill-Travel-Rwanda-Tours.git
+   cd Hill-Travel-Rwanda-Tours
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server**
+   ```bash
+   npm run dev
+   ```
+
+## 📜 Available Scripts
+
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the app for production.
+- `npm run preview`: Locally previews the production build.
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
