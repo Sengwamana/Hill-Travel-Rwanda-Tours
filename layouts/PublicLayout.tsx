@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
+import AIAssistant from '../components/AIAssistant';
 
 const PublicLayout: React.FC = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const PublicLayout: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen font-body bg-sandstone">
+      <AIAssistant />
       <header 
         className={`fixed top-0 z-50 w-full transition-all duration-500 ease-in-out ${
           scrolled || mobileMenuOpen ? 'bg-forest/95 text-white shadow-lg backdrop-blur-md py-3' : 'bg-transparent text-white py-6'
