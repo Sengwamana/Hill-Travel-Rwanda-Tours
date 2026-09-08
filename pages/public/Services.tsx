@@ -1,46 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ImageWithFallback from '../../components/ImageWithFallback';
+import { SERVICE_LIST } from '../../content/services';
 
 const Services: React.FC = () => {
-  const services = [
-    {
-      slug: "bespoke-itinerary",
-      title: "Bespoke Itinerary Planning",
-      description: "Tailor-made journeys designed around your specific interests, whether it's primates, birding, or cultural immersion.",
-      icon: "map"
-    },
-    {
-      slug: "gorilla-permits",
-      title: "Gorilla Trekking Permits",
-      description: "We handle the complex logistics of securing permits for Volcanoes National Park, ensuring your encounter with the gentle giants.",
-      icon: "pets"
-    },
-    {
-      slug: "luxury-lodge-booking",
-      title: "Luxury Lodge Booking",
-      description: "Access to exclusive rates and curated stays at Rwanda's most sustainable and luxurious eco-lodges.",
-      icon: "king_bed"
-    },
-    {
-      slug: "private-transport",
-      title: "Private Transport & Logistics",
-      description: "Navigate the Land of a Thousand Hills in comfort with our fleet of modern 4x4 Land Cruisers and professional driver-guides.",
-      icon: "directions_car"
-    },
-    {
-      slug: "community-cultural-tours",
-      title: "Community & Cultural Tours",
-      description: "Authentic experiences that directly support local artisans, women's cooperatives, and reconciliation initiatives.",
-      icon: "diversity_3"
-    },
-    {
-      slug: "corporate-group-travel",
-      title: "Corporate & Group Travel",
-      description: "Seamless logistics for retreats, conferences, and educational groups seeking impactful team-building experiences.",
-      icon: "groups"
-    }
-  ];
+  const services = SERVICE_LIST;
 
   return (
     <div className="w-full bg-sandstone">
@@ -48,7 +12,7 @@ const Services: React.FC = () => {
       <div className="relative pt-32 pb-20 px-6 bg-earth text-sandstone">
         <div className="absolute inset-0 overflow-hidden">
            <div className="absolute inset-0 bg-black/30 z-10"></div>
-           <ImageWithFallback src="https://images.unsplash.com/photo-1519095613723-66d10c042973?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover opacity-40 grayscale" alt="Service Texture" />
+           <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Launch_of_the_Environment_Week_2017-_Umuganda_at_Nyandungu_Wetland_-_34961808125.jpg/3840px-Launch_of_the_Environment_Week_2017-_Umuganda_at_Nyandungu_Wetland_-_34961808125.jpg" className="w-full h-full object-cover opacity-40 grayscale" alt="Service Texture" />
         </div>
         <div className="max-w-7xl mx-auto relative z-20 text-center">
           <span className="text-sage font-bold text-xs uppercase tracking-[0.2em] mb-4 block animate-fade-in">What We Do</span>
