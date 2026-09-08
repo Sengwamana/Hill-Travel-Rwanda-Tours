@@ -37,8 +37,9 @@ const AIAssistant: React.FC = () => {
   const [inputText, setInputText] = useState('');
   const [isListening, setIsListening] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [voiceUnsupported, setVoiceUnsupported] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
-
+  const isSendingRef = useRef(false);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
 
   // Initialize Speech Recognition
@@ -86,29 +87,36 @@ const AIAssistant: React.FC = () => {
   };
 
   const handleSend = async (text: string) => {
-    if (!text.trim()) return;
+    const trimmed = text.trim();
+    if (!trimmed || isSendingRef.current) return;
+
+    isSendingRef.current = true;
 
     // Add User Message
-    const userMsg = { text, sender: 'user' as const };
+    const userMsg = { text: trimmed, sender: 'user' as const };
     setMessages(prev => [...prev, userMsg]);
     setInputText('');
     setIsLoading(true);
 
-    // Get AI Response
-    const responseText = await getGeminiResponse(text);
-    
-    // Add AI Message
-    const aiMsg = { text: responseText, sender: 'ai' as const };
-    setMessages(prev => [...prev, aiMsg]);
-    setIsLoading(false);
+    try {
+      // Get AI Response
+      const responseText = await getGeminiResponse(trimmed);
 
-    // Speak AI Response
-    speak(responseText);
+      // Add AI Message
+      const aiMsg = { text: responseText, sender: 'ai' as const };
+      setMessages(prev => [...prev, aiMsg]);
+
+      // Speak AI Response
+      speak(responseText);
+    } finally {
+      setIsLoading(false);
+      isSendingRef.current = false;
+    }
   };
 
   const toggleListening = () => {
     if (!recognitionRef.current) {
-        alert("Voice recognition is not supported in this browser.");
+        setVoiceUnsupported(true);
         return;
     }
 
@@ -137,7 +145,7 @@ const AIAssistant: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-sandstone/20 animate-in slide-in-from-bottom-10 fade-in duration-300">
+        <div className="w-[350px] h-[500px] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden border border-sandstone/20 animate-fade-in duration-300">
             {/* Header */}
             <div className="bg-forest p-4 flex items-center justify-between text-white">
                 <div className="flex items-center gap-3">
@@ -149,7 +157,7 @@ const AIAssistant: React.FC = () => {
                         <p className="text-[10px] uppercase tracking-wider opacity-80">AI Travel Assistant</p>
                     </div>
                 </div>
-                <button onClick={() => setIsOpen(false)} className="hover:bg-white/20 p-1 rounded-full transition-colors">
+                <button onClick={() => setIsOpen(false)} aria-label="Close AI Assistant" className="hover:bg-white/20 p-1 rounded-full transition-colors">
                     <span className="material-symbols-outlined">close</span>
                 </button>
             </div>
@@ -181,6 +189,9 @@ const AIAssistant: React.FC = () => {
 
             {/* Input Area */}
             <div className="p-4 bg-white border-t border-sandstone/10">
+                {voiceUnsupported && (
+                    <p role="alert" className="mb-2 text-xs text-red-500">Voice recognition is not supported in this browser.</p>
+                )}
                 <div className="flex items-center gap-2 relative">
                     <input 
                         type="text" 
@@ -196,6 +207,7 @@ const AIAssistant: React.FC = () => {
                         onClick={toggleListening}
                         className={`absolute right-12 p-1.5 rounded-full transition-colors ${isListening ? 'text-red-500 animate-pulse' : 'text-gray-400 hover:text-forest'}`}
                         title="Speak"
+                        aria-label="Use voice input"
                     >
                          <span className="material-symbols-outlined text-xl">{isListening ? 'mic_off' : 'mic'}</span>
                     </button>
@@ -203,8 +215,9 @@ const AIAssistant: React.FC = () => {
                     {/* Send Button */}
                     <button 
                         onClick={() => handleSend(inputText)}
-                        disabled={!inputText.trim() && !isListening}
+                        disabled={!inputText.trim() || isLoading}
                         className="bg-forest text-white p-3 rounded-full hover:bg-forest/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-md hover:shadow-lg active:scale-95"
+                        aria-label="Send message"
                     >
                         <span className="material-symbols-outlined text-lg">send</span>
                     </button>

@@ -1,35 +1,38 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-// Initialize the Gemini API
-// Support both vite env prefixes
-const API_KEY = import.meta.env.GEMINI_API_KEY || import.meta.env.VITE_GEMINI_API_KEY;
+// Use a VITE_ prefixed variable so Vite exposes it via import.meta.env.
+// Never reference process.env here — it is not available in the browser.
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
-let model: any = null;
+// gemini-1.5-flash was retired in Sept 2025. Try current models in order.
+const MODEL_CANDIDATES = ["gemini-2.5-flash", "gemini-3.1-flash-lite"];
 
-if (API_KEY && API_KEY !== 'PLACEHOLDER_API_KEY') {
-    const genAI = new GoogleGenerativeAI(API_KEY);
-    model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
-}
+const genAI = API_KEY && API_KEY !== 'PLACEHOLDER_API_KEY'
+  ? new GoogleGenerativeAI(API_KEY)
+  : null;
 
-export const getGeminiResponse = async (message: string) => {
-  try {
-    if (!model) {
-        return "I'm not fully set up yet. Please add a valid GEMINI_API_KEY to your .env.local file to enable my travel knowledge.";
-    }
-    
-    const prompt = `
-    You are the AI Assistant for 'Hill Travel Rwanda Tours'. 
+const buildPrompt = (message: string) => `
+    You are the AI Assistant for 'Hill Travel Rwanda Tours'.
     Your tone is friendly, professional, and knowledgeable about Rwanda.
     Keep your answers concise (under 50 words preferably) as they may be spoken aloud.
-    
+
     User Query: ${message}
     `;
 
-    const result = await model.generateContent(prompt);
-    const response = await result.response;
-    return response.text();
-  } catch (error) {
-    console.error("Error fetching Gemini response:", error);
-    return "I'm having trouble connecting to the network right now. Please check your connection and try again.";
+export const getGeminiResponse = async (message: string): Promise<string> => {
+  if (!genAI) {
+    return "I'm not fully set up yet. Please add a valid VITE_GEMINI_API_KEY to your .env file to enable my travel knowledge.";
   }
+
+  for (const modelName of MODEL_CANDIDATES) {
+    try {
+      const model = genAI.getGenerativeModel({ model: modelName });
+      const result = await model.generateContent(buildPrompt(message));
+      return result.response.text();
+    } catch (error) {
+      console.warn(`Gemini model "${modelName}" failed:`, error);
+    }
+  }
+
+  return "I'm having trouble connecting to the network right now. Please check your connection and try again.";
 };
