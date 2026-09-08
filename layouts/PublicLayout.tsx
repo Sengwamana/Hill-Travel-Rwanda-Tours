@@ -27,10 +27,14 @@ const PublicLayout: React.FC = () => {
     { to: '/events', label: 'Events' },
     { to: '/community', label: 'Community' },
     { to: '/portfolio', label: 'Portfolio' },
+    { to: '/contact', label: 'Contact' },
   ];
 
+  const isActive = (to: string): boolean =>
+    to === '/' ? location.pathname === '/' : location.pathname === to || location.pathname.startsWith(to + '/');
+
   // Refined navigation link styles with premium underline animation
-  const navLinkClasses = "relative text-xs lg:text-sm font-bold uppercase tracking-[0.08em] lg:tracking-[0.15em] whitespace-nowrap transition-colors duration-300 hover:text-sage py-2 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[2px] after:bottom-0 after:left-0 after:bg-sage after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left";
+  const navLinkClasses = "relative text-xs xl:text-sm font-bold uppercase tracking-[0.08em] xl:tracking-[0.12em] whitespace-nowrap transition-colors duration-300 hover:text-sage py-2 after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[2px] after:bottom-0 after:left-0 after:bg-sage after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left";
 
   return (
     <div className="flex flex-col min-h-screen font-body bg-sandstone">
@@ -52,12 +56,24 @@ const PublicLayout: React.FC = () => {
             </div>
           </Link>
 
-          {/* Always-visible nav — scrolls horizontally on small screens */}
-          <nav className="flex items-center gap-x-6 lg:gap-x-7 overflow-x-auto scrollbar-hide whitespace-nowrap min-w-0 py-2 flex-1 justify-center">
-            {navLinks.map((link) => (
-              <Link key={link.to} to={link.to} className={navLinkClasses}>{link.label}</Link>
-            ))}
-          </nav>
+          {/* Always-visible nav — centered on wide screens, horizontally scrollable on narrow ones */}
+          <div className="flex flex-1 min-w-0 items-center justify-center overflow-hidden py-2">
+            <nav className="flex overflow-x-auto scrollbar-hide">
+              <ul className="m-auto flex items-center whitespace-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-8 px-2">
+                {navLinks.map((link) => (
+                  <li key={link.to}>
+                    <Link
+                      to={link.to}
+                      aria-current={isActive(link.to) ? 'page' : undefined}
+                      className={`${navLinkClasses} ${isActive(link.to) ? 'text-sage after:scale-x-100 after:origin-bottom-left' : ''}`}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
 
           <Link to="/booking" className={`shrink-0 flex items-center justify-center px-4 md:px-6 py-2.5 rounded-sm text-[11px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 ${
             scrolled ? 'bg-sandstone text-forest hover:bg-white hover:text-earth' : 'bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm'
