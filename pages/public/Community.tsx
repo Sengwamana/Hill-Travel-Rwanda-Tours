@@ -8,7 +8,7 @@ const Community: React.FC = () => {
       {/* Hero */}
       <div className="h-[60vh] relative flex items-center justify-center">
         <ImageWithFallback 
-          src="https://images.unsplash.com/photo-1579685366885-e1e550c609d9?q=80&w=2070&auto=format&fit=crop" 
+          src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Rwandan_basket_weaving.jpg/3840px-Rwandan_basket_weaving.jpg" 
           alt="Community Weaving" 
           className="absolute inset-0 w-full h-full object-cover" 
         />
@@ -63,7 +63,7 @@ const Community: React.FC = () => {
           <div className="md:w-1/2 relative">
              <div className="aspect-square bg-sage/20 rounded-full absolute -top-10 -right-10 w-full h-full -z-10"></div>
               <ImageWithFallback 
-                src="https://images.unsplash.com/photo-1543859239-01e9124237f0?q=80&w=2070&auto=format&fit=crop" 
+                src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f9/Umuganda.jpg/3840px-Umuganda.jpg" 
                 alt="Community Gathering" 
                 className="rounded-lg shadow-xl w-full object-cover aspect-[4/3]"
               />
@@ -82,19 +82,19 @@ const Community: React.FC = () => {
                 slug: "nyamirambo-womens-center",
                 title: "Nyamirambo Women's Center",
                 desc: "A Rwandan NGO founded by 18 women living in Nyamirambo, Kigali. They provide education and vocational training to disadvantaged women.",
-                img: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop"
+                img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Rwandan_basket_weaving.jpg/3840px-Rwandan_basket_weaving.jpg"
               },
               {
                 slug: "red-rocks-initiative",
                 title: "Red Rocks Initiative",
                 desc: "Integrating tourism and conservation around the Volcanoes National Park through art, music, and sustainable agriculture.",
-                img: "https://images.unsplash.com/photo-1551049688-299f18df0498?q=80&w=1974&auto=format&fit=crop"
+                img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Intore_mu_Rwanda.jpg/1920px-Intore_mu_Rwanda.jpg"
               },
               {
                 slug: "akagera-guides",
                 title: "Akagera Community Freelance Guides",
                 desc: "We exclusively hire freelance guides from the communities bordering Akagera, ensuring wildlife protection translates to local income.",
-                img: "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop"
+                img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/A_lion_and_a_lioness_in_Akagera_National_Park.jpg/3840px-A_lion_and_a_lioness_in_Akagera_National_Park.jpg"
               }
             ].map((partner, i) => (
               <div key={i} className="group cursor-pointer">

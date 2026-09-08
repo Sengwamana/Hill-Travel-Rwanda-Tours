@@ -26,8 +26,9 @@ const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
         );
     }
     return (
-      <div className={`bg-sandstone/50 flex items-center justify-center text-earth/30 ${className}`}>
-        <span className="material-symbols-outlined text-4xl">image_not_supported</span>
+      <div className={`bg-gradient-to-br from-sandstone via-sandstone-dark to-sage/40 flex flex-col items-center justify-center text-earth/40 ${className}`}>
+        <span className="material-symbols-outlined text-4xl mb-2" aria-hidden="true">image_not_supported</span>
+        <span className="text-xs font-bold uppercase tracking-[0.2em]">Hill Travel Rwanda</span>
       </div>
     );
   }

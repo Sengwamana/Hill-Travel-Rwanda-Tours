@@ -10,7 +10,7 @@ const Portfolio: React.FC = () => {
       client: "Conservation / African Parks",
       description: "Facilitating the complex logistics for the historic return of lions to Akagera National Park, restoring the savannah's ecological balance after two decades.",
       tags: ["Wildlife", "Logistics", "Restoration"],
-      image: "https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?q=80&w=2586&auto=format&fit=crop"
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/A_lion_and_a_lioness_in_Akagera_National_Park.jpg/3840px-A_lion_and_a_lioness_in_Akagera_National_Park.jpg"
     },
     {
       slug: "kivu-coffee",
@@ -18,7 +18,7 @@ const Portfolio: React.FC = () => {
       client: "Economic Dev / Local Co-ops",
       description: "Developing a sustainable tourism route connecting 15 washing stations, providing direct market access and increasing farmer income by 40%.",
       tags: ["Agriculture", "Community", "Economic Growth"],
-      image: "https://images.unsplash.com/photo-1611162618479-ee3d24aaef0b?q=80&w=2574&auto=format&fit=crop"
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/MarabaHoldingTanks.jpg/1920px-MarabaHoldingTanks.jpg"
     },
     {
       slug: "gorilla-vet",
@@ -26,7 +26,7 @@ const Portfolio: React.FC = () => {
       client: "Education / Gorilla Doctors",
       description: "Coordinating immersive educational expeditions for international veterinary students to support ongoing primate health monitoring in the Virungas.",
       tags: ["Education", "Medical", "Primates"],
-      image: "https://images.unsplash.com/photo-1575550959106-5a7defe28b56?q=80&w=2670&auto=format&fit=crop"
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Mountain_gorilla_%28Gorilla_beringei_beringei%29_female_with_baby.jpg/1920px-Mountain_gorilla_%28Gorilla_beringei_beringei%29_female_with_baby.jpg"
     },
     {
       slug: "nyamirambo-solar",
@@ -34,7 +34,31 @@ const Portfolio: React.FC = () => {
       client: "Infrastructure / Women's Center",
       description: "A community-led project to install solar panels for 50 households, funded entirely by our sustainable tourism revenue sharing model.",
       tags: ["Sustainability", "Energy", "Urban"],
-      image: "https://images.unsplash.com/photo-1548611716-3dbfabfa5524?q=80&w=2550&auto=format&fit=crop"
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/23/Sunset_views_from_Nyamirambo.jpg/3840px-Sunset_views_from_Nyamirambo.jpg"
+    },
+    {
+      slug: "kivu-wedding",
+      title: "A Lake Kivu Wedding",
+      client: "Events / 240 Guests",
+      description: "A full lakeside wedding weekend at Karongi — ceremony styling, gourmet catering, Intore performance, and guest transport across the belt. Planned end-to-end in six weeks.",
+      tags: ["Wedding", "Catering", "Venue"],
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Rwanda_tradional_dance_in_wedding.jpg/3840px-Rwanda_tradional_dance_in_wedding.jpg"
+    },
+    {
+      slug: "charity-gala",
+      title: "Kigali Charity Gala",
+      client: "Fundraising / Grassroots NGOs",
+      description: "An annual gala raising funds for rural education. We produced the stage, hosted the auction, and sourced every waiter, chef, and decor item locally — doubling year-on-year donations.",
+      tags: ["Fundraising", "Production", "Awards"],
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c6/Rwandan_wedding_stage.jpg/1920px-Rwandan_wedding_stage.jpg"
+    },
+    {
+      slug: "corporate-summit",
+      title: "East Africa Corporate Summit",
+      client: "Corporate / 350 Delegates",
+      description: "A three-day leadership summit combining conference production in Kigali with a team-building expedition in Musanze. 350 delegates, 22 nationalities, zero transport delays.",
+      tags: ["Corporate", "MICE", "Team Building"],
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Launch_of_the_Environment_Week_2017-_Umuganda_at_Nyandungu_Wetland_-_34961808125.jpg/3840px-Launch_of_the_Environment_Week_2017-_Umuganda_at_Nyandungu_Wetland_-_34961808125.jpg"
     }
   ];
 
@@ -44,13 +68,13 @@ const Portfolio: React.FC = () => {
       <div className="relative pt-32 pb-20 px-6 bg-earth text-sandstone">
         <div className="absolute inset-0 overflow-hidden">
            <div className="absolute inset-0 bg-black/40 z-10"></div>
-           <ImageWithFallback src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop" className="w-full h-full object-cover opacity-30 grayscale" alt="Project Planning" />
+           <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Rwanda_Landscape_Image.jpg/3840px-Rwanda_Landscape_Image.jpg" className="w-full h-full object-cover opacity-30 grayscale" alt="Project Planning" />
         </div>
         <div className="max-w-7xl mx-auto relative z-20 text-center">
           <span className="text-sage font-bold text-xs uppercase tracking-[0.2em] mb-4 block animate-fade-in">Our Work</span>
           <h1 className="text-5xl md:text-7xl font-serif text-white mb-6 animate-hero-title">Impact Portfolio</h1>
           <p className="max-w-2xl mx-auto text-lg text-sandstone/90 font-light leading-relaxed animate-hero-text">
-            Beyond booking trips, we design conservation strategies and community development programs. Explore our case studies.
+            Beyond booking trips, we design conservation strategies, community programs, and landmark events. Explore our case studies.
           </p>
         </div>
       </div>

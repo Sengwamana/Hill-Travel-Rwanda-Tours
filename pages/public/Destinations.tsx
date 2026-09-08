@@ -2,17 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import LodgeCard from '../../components/LodgeCard';
 import ImageWithFallback from '../../components/ImageWithFallback';
+import { eventsFor } from '../../utils/events';
 
 const Destinations: React.FC = () => {
-    // ... (rest of the file remains, I will target specific lines for replacement)
-
   const regions = [
     {
       id: "musanze",
       name: "Musanze & Volcanoes",
       tag: "The North",
       description: "Home to the endangered mountain gorillas, but also a hub for caving, canoeing, and cultural village tours. We focus on lodges that directly employ former poachers as conservationists.",
-      image: "https://images.unsplash.com/photo-1534008779836-39df8546b404?q=80&w=1932&auto=format&fit=crop",
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/Mountain_gorilla_from_Susa_Group_in_Karisimbi_thicket_of_Volcanoes_National_Park_in_Rwanda._Emmanuel_Kwizera.jpg/3840px-Mountain_gorilla_from_Susa_Group_in_Karisimbi_thicket_of_Volcanoes_National_Park_in_Rwanda._Emmanuel_Kwizera.jpg",
       highlights: [
         { icon: "landscape", text: "5 Volcanoes" },
         { icon: "pets", text: "Gorilla Trekking" },
@@ -24,7 +23,7 @@ const Destinations: React.FC = () => {
       name: "Lake Kivu Belt",
       tag: "The West",
       description: "Rwanda's Riviera. A place to unwind after trekking. Explore the Napoleon Islands, kayak with local fishermen singing traditional songs, and cycle the Congo Nile Trail.",
-      image: "https://images.unsplash.com/photo-1544253325-17a41922c2a2?q=80&w=2028&auto=format&fit=crop",
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Lake_Kivu_at_dawn.jpg/1920px-Lake_Kivu_at_dawn.jpg",
       highlights: [
         { icon: "kayaking", text: "Night Fishing" },
         { icon: "directions_bike", text: "Congo Nile Trail" },
@@ -36,7 +35,7 @@ const Destinations: React.FC = () => {
       name: "Nyungwe National Park",
       tag: "The South-West",
       description: "One of Africa's oldest rainforests. A biodiversity hotspot teaming with 13 primate species including chimpanzees and colobus monkeys. Walk above the trees on the famous Canopy Walkway.",
-      image: "https://images.unsplash.com/photo-1544634076-a901606f414e?q=80&w=1974&auto=format&fit=crop",
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Nyungwe_Forest_NP_20150928-DSCF4880.jpg/3840px-Nyungwe_Forest_NP_20150928-DSCF4880.jpg",
       highlights: [
         { icon: "forest", text: "Canopy Walk" },
         { icon: "pest_control", text: "Chimpanzees" },
@@ -48,7 +47,7 @@ const Destinations: React.FC = () => {
       name: "Gishwati-Mukura N.P.",
       tag: "The North-West",
       description: "Rwanda's newest national park and a UNESCO Biosphere Reserve. A touching story of regeneration, this forest is now recovering and offers exclusive chimpanzee and golden monkey tracking away from crowds.",
-      image: "https://images.unsplash.com/photo-1440557653082-e8e186733eeb?q=80&w=2574&auto=format&fit=crop",
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/Gishwati_Natural_Forest_01.jpg/1920px-Gishwati_Natural_Forest_01.jpg",
       highlights: [
         { icon: "recycling", text: "Regeneration" },
         { icon: "visibility", text: "Private Trekking" },
@@ -60,7 +59,7 @@ const Destinations: React.FC = () => {
       name: "Kigali City Tour",
       tag: "The Capital",
       description: "The heartbeat of the country. Clean, safe, and innovative. Visit the Genocide Memorial for history, Nyamirambo for culture, and art centers for the future of Rwandan creativity.",
-      image: "https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?q=80&w=2000&auto=format&fit=crop",
+      image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Kigali2018Cropped.jpg/1920px-Kigali2018Cropped.jpg",
       highlights: [
         { icon: "museum", text: "Genocide Memorial" },
         { icon: "palette", text: "Art Galleries" },
@@ -74,7 +73,7 @@ const Destinations: React.FC = () => {
       {/* Destinations Header */}
       <div className="relative pt-32 pb-20 px-6 bg-earth text-sandstone">
         <div className="absolute inset-0 overflow-hidden">
-           <ImageWithFallback src="https://images.unsplash.com/photo-1517016006573-2eefaa2f5b63?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover opacity-20" alt="Texture" />
+           <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Sky_view_of_hills_of_Rwanda.jpg/3840px-Sky_view_of_hills_of_Rwanda.jpg" className="w-full h-full object-cover opacity-20" alt="Texture" />
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
           <span className="text-sage font-bold text-xs uppercase tracking-[0.2em] mb-4 block animate-fade-in">Discover</span>
@@ -109,6 +108,19 @@ const Destinations: React.FC = () => {
               <Link to={`/destinations/${region.id}`} className="inline-block px-6 py-3 border border-forest text-forest font-bold uppercase text-xs tracking-widest hover:bg-forest hover:text-white transition-colors mt-4">
                 Explore {region.name.split(' ')[0]}
               </Link>
+              {eventsFor('destinations', region.id).length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-2">
+                  {eventsFor('destinations', region.id).map((e) => (
+                    <Link
+                      key={e.slug}
+                      to={`/events/${e.slug}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-forest/5 border border-forest/20 rounded-full text-xs font-bold uppercase tracking-wider text-forest hover:bg-forest hover:text-white transition-colors"
+                    >
+                      <span className="material-symbols-outlined text-sm">{e.icon}</span> {e.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
             </div>
             <div className={`md:w-1/2 h-80 md:h-[500px] w-full rounded-2xl overflow-hidden relative group ${index % 2 === 0 ? 'order-1 md:order-2' : ''}`}>
                <ImageWithFallback src={region.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt={region.name} />
@@ -121,26 +133,23 @@ const Destinations: React.FC = () => {
            <h3 className="text-3xl font-serif text-earth mb-8 text-center">Top Sustainable Stays</h3>
            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1584132967334-10e028bd69f7?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/37/Volcanoes_National_Park_%2845593389614%29.jpg/1920px-Volcanoes_National_Park_%2845593389614%29.jpg"
               name="Singita Kwitonda"
               location="Volcanoes"
-              price="$1,500"
               ecoScore={9.9}
               tags={['Conservation', 'High-End', 'Wellness']}
             />
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/A_lion_and_a_lioness_in_Akagera_National_Park.jpg/3840px-A_lion_and_a_lioness_in_Akagera_National_Park.jpg"
               name="Magashi Camp"
               location="Akagera"
-              price="$600"
               ecoScore={9.4}
               tags={['Solar Powered', 'Zero Plastic', 'Safari']}
             />
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1540541338287-41700207dee6?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/00/Scenery_around_Kibuye_%28Karongi%29_-_Rwanda_-_01_%288971615320%29.jpg/1920px-Scenery_around_Kibuye_%28Karongi%29_-_Rwanda_-_01_%288971615320%29.jpg"
               name="Cormoran Lodge"
               location="Kibuye"
-              price="$180"
               ecoScore={8.9}
               tags={['Local Wood', 'Community Staff', 'Lakeside']}
             />

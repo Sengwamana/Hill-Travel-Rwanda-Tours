@@ -9,7 +9,7 @@ const About: React.FC = () => {
       <div className="relative pt-32 pb-20 px-6 bg-earth text-sandstone">
         <div className="absolute inset-0 overflow-hidden">
            <div className="absolute inset-0 bg-black/40 z-10"></div>
-           <ImageWithFallback src="https://images.unsplash.com/photo-1534234828563-0259b15e580d?q=80&w=2574&auto=format&fit=crop" className="w-full h-full object-cover opacity-50 grayscale" alt="Rwanda Landscape" />
+           <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Mt_kalisimbi%2C_Nyamuragira_and_Bisoke_sunset_view.jpg/3840px-Mt_kalisimbi%2C_Nyamuragira_and_Bisoke_sunset_view.jpg" className="w-full h-full object-cover opacity-50 grayscale" alt="Rwanda Landscape" />
         </div>
         <div className="max-w-7xl mx-auto relative z-20 text-center">
           <span className="text-sage font-bold text-xs uppercase tracking-[0.2em] mb-4 block animate-fade-in">Our Story</span>

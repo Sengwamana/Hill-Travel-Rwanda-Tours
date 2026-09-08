@@ -93,9 +93,9 @@ const Contact: React.FC = () => {
             <div className="p-8 bg-forest text-white rounded-sm mt-12">
                <h3 className="font-serif text-2xl mb-2">Agent Partnerships</h3>
                <p className="text-sandstone/80 text-sm mb-4">We collaborate with luxury travel agents worldwide.</p>
-               <button className="text-xs font-bold uppercase tracking-widest border-b border-white pb-1 hover:text-sage hover:border-sage transition-colors">
-                 Partner With Us
-               </button>
+<a href="mailto:info@hilltravelrwanda.com" className="inline-block text-xs font-bold uppercase tracking-widest border-b border-white pb-1 hover:text-sage hover:border-sage transition-colors">
+                  Partner With Us
+                </a>
             </div>
           </div>
 
@@ -207,7 +207,7 @@ const Contact: React.FC = () => {
 
       {/* Map Placeholder */}
       <div className="h-96 w-full bg-gray-200 relative">
-        <ImageWithFallback src="https://images.unsplash.com/photo-1576487248805-cf45f6bcc67f?q=80&w=2000&auto=format&fit=crop" className="w-full h-full object-cover grayscale opacity-50" alt="Map Location" />
+        <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Kigali2018Cropped.jpg/1920px-Kigali2018Cropped.jpg" className="w-full h-full object-cover grayscale opacity-50" alt="Map Location" />
         <div className="absolute inset-0 flex items-center justify-center">
            <div className="bg-white px-6 py-3 shadow-xl rounded-full flex items-center gap-2">
              <span className="material-symbols-outlined text-forest">pin_drop</span>

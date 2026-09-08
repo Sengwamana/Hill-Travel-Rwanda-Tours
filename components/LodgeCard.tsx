@@ -1,16 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import ImageWithFallback from './ImageWithFallback';
 
 export interface LodgeProps {
   image: string;
   name: string;
   location: string;
-  price: string;
   ecoScore: number;
   tags: string[];
 }
 
-const LodgeCard: React.FC<LodgeProps> = ({ image, name, location, price, ecoScore, tags }) => {
+const LodgeCard: React.FC<LodgeProps> = ({ image, name, location, ecoScore, tags }) => {
   return (
     <div className="group relative bg-white rounded-t-2xl rounded-b-md overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
       <div className="relative h-72 overflow-hidden">
@@ -47,14 +47,10 @@ const LodgeCard: React.FC<LodgeProps> = ({ image, name, location, price, ecoScor
         </div>
 
         <div className="flex items-end justify-between border-t border-sandstone/50 pt-4">
-          <div>
-            <span className="block text-xs text-gray-400">Starting from</span>
-            <span className="text-lg font-bold text-earth">{price}</span>
-            <span className="text-xs text-gray-400">/night</span>
-          </div>
-          <button className="text-forest font-medium text-sm hover:underline flex items-center gap-1">
+          <span className="text-sm font-bold text-earth/60">Rates on request</span>
+          <Link to="/booking" className="text-forest font-medium text-sm hover:underline flex items-center gap-1">
             View Details <span className="material-symbols-outlined text-sm">arrow_forward</span>
-          </button>
+          </Link>
         </div>
       </div>
     </div>

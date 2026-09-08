@@ -2,11 +2,21 @@ import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import ImageWithFallback from '../../components/ImageWithFallback';
 
-const communityData: Record<string, any> = {
+interface CommunityPartner {
+  title: string;
+  type: string;
+  image: string;
+  mission: string;
+  impact: { value: string; label: string }[];
+  description: string;
+  activities: string[];
+}
+
+const communityData: Record<string, CommunityPartner> = {
   'nyamirambo-womens-center': {
     title: "Nyamirambo Women's Center",
     type: "NGO & Cooperative",
-    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070&auto=format&fit=crop",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Rwandan_basket_weaving.jpg/3840px-Rwandan_basket_weaving.jpg",
     mission: "To address gender-based violence, gender inequality, and discrimination by providing education and vocational training to disadvantaged women.",
     impact: [
       { value: "18", label: "Founding Members" },
@@ -23,7 +33,7 @@ const communityData: Record<string, any> = {
   'red-rocks-initiative': {
     title: "Red Rocks Initiative",
     type: "Conservation & Art",
-    image: "https://images.unsplash.com/photo-1551049688-299f18df0498?q=80&w=1974&auto=format&fit=crop",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Intore_mu_Rwanda.jpg/1920px-Intore_mu_Rwanda.jpg",
     mission: "To integrate tourism, conservation, and community development around the Volcanoes National Park through art, music, and sustainable agriculture.",
     impact: [
       { value: "15", label: "Cooperatives Supported" },
@@ -41,7 +51,7 @@ const communityData: Record<string, any> = {
   'akagera-guides': {
     title: "Akagera Community Freelance Guides",
     type: "Wildlife & Education",
-    image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2068&auto=format&fit=crop",
+    image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/A_lion_and_a_lioness_in_Akagera_National_Park.jpg/3840px-A_lion_and_a_lioness_in_Akagera_National_Park.jpg",
     mission: "To ensure that wildlife protection translates directly to local income by professionalizing guiding services for community members bordering the park.",
     impact: [
       { value: "40+", label: "Guides Certified" },
@@ -93,7 +103,7 @@ const CommunityDetail: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-6 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-           {data.impact.map((stat: any, i: number) => (
+           {data.impact.map((stat, i) => (
              <div key={i} className="bg-white p-6 rounded-sm shadow-sm border-b-4 border-forest text-center">
                <span className="block text-4xl font-bold text-forest mb-2">{stat.value}</span>
                <span className="text-xs font-bold uppercase tracking-widest text-earth/60">{stat.label}</span>
@@ -128,9 +138,9 @@ const CommunityDetail: React.FC = () => {
                <Link to="/contact" className="block w-full py-3 bg-white text-forest text-center font-bold uppercase tracking-widest hover:bg-sage hover:text-white transition-colors">
                  Book a Visit
                </Link>
-               <button className="block w-full py-3 border border-white/30 text-white text-center font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
-                 Donate Directly
-               </button>
+<Link to="/contact" className="block w-full py-3 border border-white/30 text-white text-center font-bold uppercase tracking-widest hover:bg-white/10 transition-colors">
+                  Donate Directly
+                </Link>
              </div>
            </div>
         </div>
