@@ -1,22 +1,25 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import LodgeCard from '../../components/LodgeCard';
+import HeroSlider from '../../components/HeroSlider';
 import ImageWithFallback from '../../components/ImageWithFallback';
+
+const heroSlides = [
+  { image: "https://upload.wikimedia.org/wikipedia/commons/6/6d/Rwanda_Tea_Plantations.jpg", alt: "Rwanda tea plantation terraces" },
+  { image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/Mountain_gorilla_%28Gorilla_beringei_beringei%29_female_with_baby.jpg/1920px-Mountain_gorilla_%28Gorilla_beringei_beringei%29_female_with_baby.jpg", alt: "Mountain gorilla in Volcanoes National Park" },
+  { image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8a/Lake_Kivu_at_dawn.jpg/1920px-Lake_Kivu_at_dawn.jpg", alt: "Lake Kivu shoreline" },
+  { image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Kigali2018Cropped.jpg/1920px-Kigali2018Cropped.jpg", alt: "Kigali city from the hills" },
+  { image: "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Drummer_at_Tour_DU_rwanda_2024.jpg/1280px-Drummer_at_Tour_DU_rwanda_2024.jpg", alt: "Celebration and events in Rwanda" },
+];
 
 const Home: React.FC = () => {
   return (
     <div className="w-full">
       {/* Hero Section */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image - Tea Plantations (Not just Gorillas) */}
-        <div className="absolute inset-0">
-          <ImageWithFallback 
-            src="https://images.unsplash.com/photo-1544976735-e51c4e70438a?q=80&w=2662&auto=format&fit=crop" 
-            alt="Rwanda Tea Plantation" 
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
-        </div>
+        {/* Sliding Background Images */}
+        <HeroSlider slides={heroSlides} />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
 
         <div className="relative z-10 text-center max-w-4xl px-6 pt-20">
           <span className="inline-block py-1 px-3 border border-white/40 rounded-full text-white text-xs font-bold uppercase tracking-[0.2em] mb-6 backdrop-blur-sm animate-fade-in">
@@ -33,8 +36,8 @@ const Home: React.FC = () => {
             <Link to="/destinations" className="min-w-[180px] px-8 py-4 bg-forest hover:bg-forest-light text-white rounded-sm font-medium transition-all duration-300 shadow-xl shadow-forest/20">
               Explore Destinations
             </Link>
-            <Link to="/experiences" className="min-w-[180px] px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md rounded-sm font-medium transition-all duration-300">
-              Our Philosophy
+            <Link to="/events" className="min-w-[180px] px-8 py-4 bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-md rounded-sm font-medium transition-all duration-300">
+              Plan an Event
             </Link>
           </div>
         </div>
@@ -79,7 +82,7 @@ const Home: React.FC = () => {
             
             <div className="relative">
               <div className="aspect-[4/5] rounded-t-[100px] rounded-b-2xl overflow-hidden shadow-2xl">
-                <ImageWithFallback src="https://images.unsplash.com/photo-1579685366885-e1e550c609d9?q=80&w=2070&auto=format&fit=crop" alt="Rwandan woman weaving" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                <ImageWithFallback src="https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1c/Rwandan_basket_weaving.jpg/3840px-Rwandan_basket_weaving.jpg" alt="Rwandan woman weaving" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
               </div>
               <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-tr-2xl shadow-xl max-w-xs hidden md:block">
                 <p className="font-serif italic text-earth text-lg mb-2">"Travel makes one modest. You see what a tiny place you occupy in the world."</p>
@@ -103,26 +106,23 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/d/dd/Volcanoes_National_Park_%2844500559730%29.jpg/1920px-Volcanoes_National_Park_%2844500559730%29.jpg"
               name="Bisate Lodge"
               location="Volcanoes Nat. Park"
-              price="$1,200"
               ecoScore={9.8}
               tags={['Reforestation', 'Solar Power', 'Luxury']}
             />
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/Beach_in_Gisenyi_%28Rwanda%29.JPG/1920px-Beach_in_Gisenyi_%28Rwanda%29.JPG"
               name="Kivu Marina Bay"
               location="Karongi, Lake Kivu"
-              price="$250"
               ecoScore={9.2}
               tags={['Water Conservation', 'Local Staff', 'Lake View']}
             />
             <LodgeCard 
-              image="https://images.unsplash.com/photo-1499678329028-101435549a4e?q=80&w=2070&auto=format&fit=crop"
+              image="https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/A_lion_and_a_lioness_in_Akagera_National_Park.jpg/3840px-A_lion_and_a_lioness_in_Akagera_National_Park.jpg"
               name="Akagera Rhino Camp"
               location="Akagera Nat. Park"
-              price="$450"
               ecoScore={9.5}
               tags={['Anti-Poaching Fund', 'Tent Camp', 'Wildlife']}
             />
@@ -131,6 +131,45 @@ const Home: React.FC = () => {
           <div className="mt-12 text-center">
             <Link to="/destinations" className="inline-flex items-center gap-2 border-b-2 border-forest pb-1 text-forest font-bold hover:text-earth hover:border-earth transition-colors">
               View All Accommodations <span className="material-symbols-outlined">arrow_forward</span>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Events Section */}
+      <section className="py-24 px-6 bg-sandstone">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="text-forest font-bold text-xs uppercase tracking-[0.2em] mb-2 block">Plan, Host, Celebrate</span>
+            <h2 className="text-4xl md:text-5xl font-serif text-earth mb-6">An Occasion for Every Hill</h2>
+            <p className="text-earth/70">
+              Weddings, graduations, corporate retreats, cultural festivals, and more — we design events around Rwanda's destinations, services, and experiences.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { slug: "wedding", name: "Weddings", desc: "Lakeside vows, traditional Intore ceremonies, and unforgettable receptions.", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Rwanda_tradional_dance_in_wedding.jpg/3840px-Rwanda_tradional_dance_in_wedding.jpg" },
+              { slug: "corporate", name: "Corporate Events", desc: "Retreats, conferences, and team-building in Rwanda's premium venues.", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/43/An_aerial_of_Kigali_Convention_Center_on_June_19%2C_2019._Photo_by_Emmanuel_Kwizera.jpg/3840px-An_aerial_of_Kigali_Convention_Center_on_June_19%2C_2019._Photo_by_Emmanuel_Kwizera.jpg" },
+              { slug: "cultural", name: "Cultural Celebrations", desc: "Festivals, art, dance, and craft markets that honour Rwandan heritage.", img: "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/fe/Intore_mu_Rwanda.jpg/1920px-Intore_mu_Rwanda.jpg" }
+            ].map((item) => (
+              <Link key={item.slug} to={`/events/${item.slug}`} className="group relative h-96 overflow-hidden rounded-sm shadow-lg">
+                <ImageWithFallback src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+                <div className="absolute inset-x-0 bottom-0 p-8">
+                  <h3 className="text-2xl font-serif text-white mb-2">{item.name}</h3>
+                  <p className="text-sandstone/80 text-sm mb-4 leading-relaxed">{item.desc}</p>
+                  <span className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-sage">
+                    Plan this event <span className="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                  </span>
+                </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link to="/events" className="inline-flex items-center gap-2 border-b-2 border-forest pb-1 text-forest font-bold hover:text-earth hover:border-earth transition-colors">
+              Explore All 15 Event Types <span className="material-symbols-outlined">arrow_forward</span>
             </Link>
           </div>
         </div>
@@ -147,12 +186,12 @@ const Home: React.FC = () => {
             Our travel designers are ready to curate a bespoke itinerary that balances luxury with responsibility.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="px-10 py-4 bg-sandstone text-forest font-bold rounded-sm hover:bg-white transition-colors">
+            <Link to="/booking" className="px-10 py-4 bg-sandstone text-forest font-bold rounded-sm hover:bg-white transition-colors">
               Plan My Trip
-            </button>
-            <button className="px-10 py-4 border border-sandstone text-sandstone font-bold rounded-sm hover:bg-sandstone/10 transition-colors">
+            </Link>
+            <Link to="/contact" className="px-10 py-4 border border-sandstone text-sandstone font-bold rounded-sm hover:bg-sandstone/10 transition-colors">
               Download Brochure
-            </button>
+            </Link>
           </div>
         </div>
       </section>
