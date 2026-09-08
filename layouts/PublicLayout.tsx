@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import AIAssistant from '../components/AIAssistant';
+import logo from '../assets/logo.png';
 
 const PublicLayout: React.FC = () => {
   const location = useLocation();
@@ -47,13 +48,11 @@ const PublicLayout: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
           {/* Logo with interactive hover effects */}
           <Link to="/" className="flex items-center gap-3 group z-50 shrink-0 focus:outline-none" aria-label="Hill Travel Home">
-            <div className={`p-1.5 border-2 rounded-sm transition-all duration-300 group-hover:border-sage group-hover:text-sage group-focus:ring-2 group-focus:ring-sage border-white text-white`}>
-               <span className="material-symbols-outlined text-3xl transform group-hover:rotate-12 transition-transform duration-300">travel_explore</span>
-            </div>
-            <div className="flex flex-col leading-none text-white transition-colors duration-300 group-hover:text-sage">
-               <span className="font-serif text-lg md:text-xl font-bold tracking-tight uppercase">Hill Travel</span>
-               <span className="text-[10px] tracking-[0.3em] font-light uppercase opacity-90 group-hover:opacity-100">Rwanda</span>
-            </div>
+            <img
+              src={logo}
+              alt="Hill Travel Rwanda"
+              className="h-11 md:h-12 w-auto object-contain transition-opacity duration-300 group-hover:opacity-90"
+            />
           </Link>
 
           {/* Always-visible nav — centered on wide screens, horizontally scrollable on narrow ones */}
