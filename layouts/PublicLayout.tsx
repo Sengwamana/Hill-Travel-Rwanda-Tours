@@ -6,6 +6,7 @@ import logo from '../assets/logo.png';
 const PublicLayout: React.FC = () => {
   const location = useLocation();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   // Pages with a dark hero image behind the transparent header
   const hasDarkHero = ['/', '/about', '/destinations', '/services', '/events', '/community', '/portfolio']
@@ -19,6 +20,11 @@ const PublicLayout: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Close the mobile menu whenever the route changes
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location.pathname]);
 
   const navLinks = [
     { to: '/', label: 'Home' },
@@ -42,7 +48,7 @@ const PublicLayout: React.FC = () => {
       <AIAssistant />
       <header 
         className={`fixed top-0 z-50 w-full transition-all duration-500 ease-in-out ${
-          !hasDarkHero || scrolled ? 'bg-forest/95 text-white shadow-lg backdrop-blur-md py-3' : 'bg-transparent text-white py-5'
+          !hasDarkHero || scrolled || menuOpen ? 'bg-forest/95 text-white shadow-lg backdrop-blur-md py-3' : 'bg-transparent text-white py-5'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
@@ -55,8 +61,8 @@ const PublicLayout: React.FC = () => {
             />
           </Link>
 
-          {/* Always-visible nav — centered on wide screens, horizontally scrollable on narrow ones */}
-          <div className="flex flex-1 min-w-0 items-center justify-center overflow-hidden py-2">
+          {/* Desktop nav — centered on md+ screens */}
+          <div className="hidden md:flex flex-1 min-w-0 items-center justify-center overflow-hidden py-2">
             <nav className="flex overflow-x-auto scrollbar-hide">
               <ul className="m-auto flex items-center whitespace-nowrap gap-x-5 lg:gap-x-6 xl:gap-x-8 px-2">
                 {navLinks.map((link) => (
@@ -74,11 +80,52 @@ const PublicLayout: React.FC = () => {
             </nav>
           </div>
 
-          <Link to="/booking" className={`shrink-0 flex items-center justify-center px-4 md:px-6 py-2.5 rounded-sm text-[11px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 ${
+          <Link to="/booking" className={`hidden sm:inline-flex shrink-0 items-center justify-center px-4 md:px-6 py-2.5 rounded-sm text-[11px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 shadow-md hover:shadow-xl transform hover:-translate-y-0.5 ${
             scrolled ? 'bg-sandstone text-forest hover:bg-white hover:text-earth' : 'bg-white/10 hover:bg-white/20 text-white border border-white/30 backdrop-blur-sm'
           }`}>
             Book Your Trip
           </Link>
+
+          {/* Hamburger toggle — small screens */}
+          <button
+            type="button"
+            onClick={() => setMenuOpen(o => !o)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            className="md:hidden shrink-0 inline-flex items-center justify-center w-10 h-10 rounded-sm border border-white/30 text-white hover:bg-white/10 transition-colors"
+          >
+            <span className="material-symbols-outlined text-2xl">{menuOpen ? 'close' : 'menu'}</span>
+          </button>
+        </div>
+
+        {/* Mobile menu panel */}
+        <div
+          id="mobile-menu"
+          className={`${menuOpen ? 'block' : 'hidden'} md:hidden bg-forest/95 backdrop-blur-md border-t border-white/10 shadow-xl`}
+        >
+          <nav className="px-4 py-4 max-w-7xl mx-auto">
+            <ul className="flex flex-col divide-y divide-white/10">
+              {navLinks.map((link) => (
+                <li key={link.to}>
+                  <Link
+                    to={link.to}
+                    onClick={() => setMenuOpen(false)}
+                    className={`block py-3 text-sm font-bold uppercase tracking-[0.12em] transition-colors hover:text-sage ${isActive(link.to) ? 'text-sage' : 'text-white'}`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/booking"
+              onClick={() => setMenuOpen(false)}
+              className="mt-4 block w-full py-3 bg-sage text-earth text-center text-sm font-bold uppercase tracking-widest rounded-sm hover:bg-white transition-colors"
+            >
+              Book Your Trip
+            </Link>
+          </nav>
         </div>
       </header>
 
